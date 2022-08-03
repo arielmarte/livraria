@@ -23,6 +23,20 @@ public class Caixa {
 		Livro livro = new Livro("Livro 1", 10, 1);
 		QueryGenerator<Livro> qg = new QueryGenerator();
 		qg.gerarInsert(livro);
+		
+		
+		
+// 		Inicio
+		ArrayList<Vendedor> tVendedores = new ArrayList<Vendedor>();
+		
+		Integer totalUsuarios = 200;
+		
+		for (int n = 1; n <= totalUsuarios; n++){
+			
+			tVendedores.add(new Vendedor())
+			
+		}
+		
 
 	}
 

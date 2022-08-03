@@ -1,17 +1,17 @@
 package livraria.model;
 
-public class Vendedor {
-	
+public class Vendedor implements Runnable {
+
 	private transient boolean logged = false;
-	
+
 	private transient Integer id_vendedor;
-	
+
 	private Integer nome;
-	
+
 	private String usuario;
-	
+
 	private String senha;
-	
+
 	private Integer id_livraria;
 
 	public boolean isLogged() {
@@ -53,5 +53,11 @@ public class Vendedor {
 	public void setId_livraria(Integer id_livraria) {
 		this.id_livraria = id_livraria;
 	}
-	
+
+	@Override
+	public void run() {
+		// TODO Auto-generated method stub
+
+	}
+
 }
