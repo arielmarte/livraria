@@ -1,29 +1,39 @@
 package livraria.app;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
-import livraria.io.DbConnection;
-import livraria.model.Livro;
-import livraria.util.QueryGenerator;
+import livraria.io.DbInit;
+import livraria.log.RegistrarLog;
+import livraria.model.Vendedor;
 
 public class Caixa {
 
 	public static void main(String[] args) {
-		DbConnection conn = new DbConnection();
-//		
-//		String sql = "INSERT INTO livraria (nome) VALUES ('Livraria do Ariel')";
-//		
-//		try {
-//			conn.getSt().execute(sql);
-//		} catch (SQLException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
+		List<Vendedor> vendedores = new ArrayList<>();
+		RegistrarLog log = new RegistrarLog();
 		
-		Livro livro = new Livro("Livro 1", 10, 1);
-		QueryGenerator<Livro> qg = new QueryGenerator();
-		qg.gerarInsert(livro);
-
+		try {
+			DbInit.criarTabelas();
+			vendedores = DbInit.criarDados();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		//Convertendo Vendedores para Threads
+		vendedores.forEach(v -> {
+			v.setLog(log);
+		});
+		
+		for(int i = 1; i <= 1; i++) {
+			vendedores.forEach(v -> {
+				Thread t = new Thread(v);
+				t.start();
+			});
+		}
+		
 	}
 
 }

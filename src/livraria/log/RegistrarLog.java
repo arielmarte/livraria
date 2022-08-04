@@ -1,15 +1,18 @@
 package livraria.log;
 
+import java.io.File;
 import java.io.FileOutputStream;
+import java.nio.file.Files;
 import java.time.LocalTime;
 
 public class RegistrarLog {
 	private boolean monitor = false;
 
-	public static void main(String[] args) {
-		
+	public RegistrarLog() {
+		String filePath = "RegistrosLog.txt";
+		File file = new File(filePath);
+		file.delete();
 	}
-	
 	private void gravarDados(String lineToAppend) {
 		try {
 			String filePath = "RegistrosLog.txt";
@@ -22,18 +25,24 @@ public class RegistrarLog {
 		}
 	}
 	
-	public void Registrar(String usuario, String operacao, String query) {
+	public void registrar(Boolean sucesso, String usuario, String operacao, String parametros) {
 		StringBuilder sb = new StringBuilder();
+		if(sucesso) {
+			sb.append("SUCESSO: ");
+		} else {
+			sb.append("FRACASSO: ");
+		}
 		sb.append(LocalTime.now().toString());
 		sb.append(" | ");
-		sb.append("Usuário: ");
+		sb.append("Usuario: ");
 		sb.append(usuario);
 		sb.append(" | ");
 		sb.append("Operacao: ");
 		sb.append(operacao);
 		sb.append(" | ");
-		sb.append("Query: ");
-		sb.append(query);
+		sb.append("Parametros operacao: ");
+		sb.append(parametros);
+		sb.append("\n");
 		this.gravarDados(sb.toString());
 	}
 

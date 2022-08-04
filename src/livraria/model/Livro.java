@@ -2,22 +2,32 @@ package livraria.model;
 
 public class Livro {
 
-	private transient Integer id_livro;
-	
+	private Integer id_livro;
+
+
+	private String nome;
+
+	private Integer quantidade;
+
+	private Integer id_livraria;
+
 	public Livro(String nome, Integer quantidade, Integer id_livraria) {
 		this.nome = nome;
 		this.quantidade = quantidade;
 		this.id_livraria = id_livraria;
 	}
 
+	public Livro() {
+	}
 
-	private String nome;
-	
-	private Integer quantidade;
-	
-	private Integer id_livraria;
-	
+	public Integer getId_livro() {
+		return id_livro;
+	}
 
+	public void setId_livro(Integer id_livro) {
+		this.id_livro = id_livro;
+	}
+	
 	public String getNome() {
 		return nome;
 	}
@@ -41,7 +51,5 @@ public class Livro {
 	public void setId_livraria(Integer id_livraria) {
 		this.id_livraria = id_livraria;
 	}
-	
-	
 
 }
