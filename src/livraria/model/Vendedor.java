@@ -31,6 +31,15 @@ public class Vendedor implements Runnable {
 	public Vendedor() {
 	}
 	
+	public Vendedor(Vendedor v) {
+		this.nome = v.getNome();
+		this.senha = v.getSenha();
+		this.log = v.getLog();
+		this.id_vendedor = v.getId_vendedor();
+		this.operacoes = v.getOperacoes();
+		this.id_livraria = v.getId_livraria();
+		this.usuario = v.getUsuario();
+	}
 
 	public Vendedor(String usuario, String senha, RegistrarLog log) {
 		this.usuario = usuario;
@@ -38,6 +47,18 @@ public class Vendedor implements Runnable {
 		this.log = log;
 	}
 
+	
+	public Integer getId_vendedor() {
+		return id_vendedor;
+	}
+
+	public List<Integer> getOperacoes() {
+		return operacoes;
+	}
+
+	public RegistrarLog getLog() {
+		return this.log;
+	}
 	
 	public void setLog(RegistrarLog log) {
 		this.log = log;
@@ -146,7 +167,6 @@ public class Vendedor implements Runnable {
 
 			log.registrar(true, this.usuario, "INCLUIR LIVRO", "Nome = " + livro.getNome());		
 		} catch (SQLException e) {
-			e.printStackTrace();
 			log.registrar(false, this.usuario, "INCLUIR LIVRO", "Livro já Existente. Nome = " + livro.getNome());		
 		}
 

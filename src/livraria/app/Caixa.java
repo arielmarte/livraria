@@ -27,9 +27,10 @@ public class Caixa {
 			v.setLog(log);
 		});
 		
-		for(int i = 1; i <= 1; i++) {
+		for(int i = 1; i <= 20; i++) {
 			vendedores.forEach(v -> {
-				Thread t = new Thread(v);
+				Vendedor temp = new Vendedor(v);
+				Thread t = new Thread(temp);
 				t.start();
 			});
 		}
